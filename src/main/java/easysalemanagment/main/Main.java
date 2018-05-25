@@ -16,14 +16,15 @@ public class Main {
 
 	public Main() {
 		MenuProcess menuProcess = new MenuProcess();
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("easymanagmentdatabase");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
-		int menu =JOptionPaneView.menu(new String[]{"create new products","receipts managment","cash reports","exit"}, "EasySale-Managment");
-		menuProcess.menuProcess(menu);
 
-		entityManagerFactory.close();
-		entityManager.close();
+		int menu;
+		do {
+			menu = JOptionPaneView.menu(new String[] { "create new products", "create new account",
+					"receipts managment", "cash reports", "exit" }, "EasySale-Managment");
+			menuProcess.menuProcess(menu);
+		} while (menu != 4);
+		
+		menuProcess.closeEntityManagerFactory();
 
 	}
 

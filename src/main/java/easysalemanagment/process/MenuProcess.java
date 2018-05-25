@@ -1,15 +1,38 @@
 package easysalemanagment.process;
 
-import javax.swing.JOptionPane;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class MenuProcess {
-	CreateNewProduct createNewProduct = new CreateNewProduct();
+
+	private ProductCreator productCreator;
+	private AccountCreator accountCreator;
+
+	private EntityManagerFactory entityManagerFactory;
+
+	public MenuProcess() {
+		createEntityManagerFactory();
+		productCreator = new ProductCreator(entityManagerFactory);
+		accountCreator = new AccountCreator(entityManagerFactory);
+	}
+
+	public void createEntityManagerFactory() {
+		entityManagerFactory = Persistence.createEntityManagerFactory("easymanagmentdatabase");
+	}
+
+	public void closeEntityManagerFactory() {
+		entityManagerFactory.close();
+	}
 
 	public void menuProcess(int menu) {
+
 		switch (menu) {
 		case 0:
-		createNewProduct.createNewProduct();
+			productCreator.createNewProduct();
 
+			break;
+		case 1:
+			accountCreator.createNewAccount();
 			break;
 
 		}

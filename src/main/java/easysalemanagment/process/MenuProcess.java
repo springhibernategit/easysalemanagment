@@ -17,7 +17,7 @@ public class MenuProcess {
 	}
 
 	public void createEntityManagerFactory() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("easymanagmentdatabase");
+		entityManagerFactory = Persistence.createEntityManagerFactory("easyDataBase");
 	}
 
 	public void closeEntityManagerFactory() {
